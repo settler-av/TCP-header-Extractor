@@ -58,7 +58,8 @@ public class IPv4Header implements strBinToStrHex {
     @Override
     public String toString() {
         return "\nNetwork Header" + "\n" +
-                "" + "\n" +
+                "----------------------------" + "\n" +
+                "IPv4 Header" + "\n" +
                 "Version:" + version + "\n" +
                 "IHL:" + headerLength + "\n" +
                 "DSCP:" + DSCP + "\n" +

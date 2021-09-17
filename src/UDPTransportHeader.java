@@ -17,6 +17,8 @@ public class UDPTransportHeader implements strBinToStrHex{
     @Override
     public String toString() {
         return "\nTransport Layer\n"+
+                "----------------------------"+
+                "~~~~~~UDP header~~~~~\n"+
                 "Source port: "+ sourcePort +"\n" +
                 "Destination port: "+ destinationPort+"\n" +
                 "Length: "+ length+"\n" +

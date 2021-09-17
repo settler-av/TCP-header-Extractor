@@ -40,7 +40,7 @@ public class TCPTransportHeader implements strBinToStrHex{
 
     @Override
     public String toString() {
-        return ("\nTransport Layer " +"\n"+
+        return ("\nTransport Layer " +"\n----------------------------"+"\nTCP header\n"+
                 "sourcePort= " + sourcePort +"\n"+
                 "destinationPort= " + destinationPort +"\n"+
                 "sequenceNumber= " + sequenceNumber +"\n"+

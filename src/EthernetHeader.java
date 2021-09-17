@@ -28,7 +28,7 @@ public class EthernetHeader implements strBinToStrHex {
     @Override
     public String toString() {
         System.out.println();
-        return "Ethernet Header\n" + "\n" + "\nDestination MAC Address: " + printMAC(destinationMAC)
+        return "Ethernet Header\n"+"----------------------------" + "\nDestination MAC Address: " + printMAC(destinationMAC)
                 + "\nSource MAC Address: " + printMAC(sourceMAC) + "\nType: " + type;
     }
 }

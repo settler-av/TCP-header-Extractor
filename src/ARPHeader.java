@@ -28,7 +28,10 @@ public class ARPHeader implements strBinToStrHex {
 
     @Override
     public String toString() {
-        return ("Hardware type: " + HardwareType + "\n" +
+        return ("Network Header\n"+
+                "----------------------------"
+                +"\nARP header\n"+
+                "Hardware type: " + HardwareType + "\n" +
                 "Protocol type: " + ProtocolType + "\n" +
                 "Header Length: " + HeaderLength + "\n" +
                 "Protocol Length: " + ProtocolLength + "\n" +
