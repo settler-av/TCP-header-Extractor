@@ -14,7 +14,7 @@ public class ARPHeader implements strBinToStrHex {
 
     ARPHeader(String HeaderData) {
         this.HeaderData = HeaderData;
-        HardwareType = convertStringToHex(HeaderData.substring(0, 16));
+        HardwareType = convertStringToHex(this.HeaderData.substring(0, 16));
         ProtocolType = convertStringToHex(HeaderData.substring(16, 32));
         HeaderLength = convertStringToHex(HeaderData.substring(32, 40));
         ProtocolLength = convertStringToHex(HeaderData.substring(40, 48));
@@ -30,7 +30,7 @@ public class ARPHeader implements strBinToStrHex {
     public String toString() {
         return ("Network Header\n"+
                 "----------------------------"
-                +"\nARP header\n"+
+                +"\nARP header \n"+HeaderData+"\n"+
                 "Hardware type: " + HardwareType + "\n" +
                 "Protocol type: " + ProtocolType + "\n" +
                 "Header Length: " + HeaderLength + "\n" +

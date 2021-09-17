@@ -53,6 +53,9 @@ public class IPv4Header implements strBinToStrHex {
         else if(protocol.equals(Integer.toString(11))){
             UDPTransportHeader frame3 = new UDPTransportHeader(dataOfTransportLayer);
         }
+        else{
+            System.out.println("Unknown protocol detected, Protocol: "+ protocol);
+        }
     }
 
     @Override

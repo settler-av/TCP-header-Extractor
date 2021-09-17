@@ -17,7 +17,13 @@ public class Main {
 
 //        G:\Other computers\My Laptop\college document\0 SEM 3\CE 257 DCN\assignment - 1\Header-Extractor\Sample.txt
         Scanner userInput = new Scanner(System.in);
-        String filePath = userInput.nextLine();
+
+
+//        String filePath = userInput.nextLine();
+
+
+
+        String filePath = new String("D:\\college document\\0 SEM 3\\CE 257 DCN\\assignment - 1\\Sample.txt");
         File inputFile = new File(filePath);
         Scanner readInput = new Scanner(inputFile, StandardCharsets.UTF_8);
         /**
@@ -27,7 +33,7 @@ public class Main {
         int numberOfLinesToRead = userInput.nextInt();
         for (int i = 0; i < numberOfLinesToRead; i++) {
             String fileData = readInput.nextLine();
-//            //To check if file is being read or not
+//            To check if file is being read or not
 //            System.out.println(fileData);
             System.out.println("------------------------------------------\n" + "Output for the row - " + (i + 1) + "\n"
                     + "------------------------------------------");
