@@ -1,4 +1,4 @@
-public class NetworkHeader implements strBinToStrHex {
+public class IPv4Header implements strBinToStrHex {
     String headerFrame;
     String version;
     String headerLength;
@@ -21,7 +21,7 @@ public class NetworkHeader implements strBinToStrHex {
      *
      * @param headerFrame stores the data of header frame.
      */
-    public NetworkHeader(String headerFrame) {
+    public IPv4Header(String headerFrame) {
         this.headerFrame = headerFrame;
         version = convertStringToHex(headerFrame.substring(0, 4));
         headerLength = convertStringToHex(headerFrame.substring(4, 8));

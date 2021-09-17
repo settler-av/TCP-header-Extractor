@@ -16,7 +16,7 @@ public class EthernetHeader implements strBinToStrHex {
         System.out.println(toString());
         
         //Code for Network Header
-        NetworkHeader frame2 = new NetworkHeader(this.data);
+        IPv4Header frame2 = new IPv4Header(this.data);
     }
 
     @Override
