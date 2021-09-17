@@ -16,8 +16,7 @@ public class Main {
 
         System.out.println("Enter path of input file along with file name: ");
 
-        // G:\Other computers\My Laptop\college document\0 SEM 3\CE 257 DCN\assignment -
-        // 1\Header-Extractor\Sample.txt
+//        G:\Other computers\My Laptop\college document\0 SEM 3\CE 257 DCN\assignment - 1\Header-Extractor\Sample.txt
         Scanner userInput = new Scanner(System.in);
         String filePath = userInput.nextLine();
         File inputFile = new File(filePath);
@@ -30,77 +29,21 @@ public class Main {
         int numberOfLinesToRead = userInput.nextInt();
         for (int i = 0; i < numberOfLinesToRead; i++) {
             String fileData = readInput.nextLine();
-            System.out.println(fileData);
+//            //To check if file is being read or not
+//            System.out.println(fileData);
             System.out.println("------------------------------------------\n" + "Output for the row - " + (i + 1) + "\n"
-                    + "------------------------------------------\n");
+                    + "------------------------------------------");
             // Code for Ethernet Header
 
             ethernetHeader frame1 = new ethernetHeader(fileData.substring(0, 112), fileData.substring(112));
             System.out.println(frame1.toString());
         }
-        {
-            String fileData = readInput.nextLine();
-            System.out.println(fileData);
-            System.out.println("------------------------------------------\n" + "Output for the row-1\n"
-                    + "------------------------------------------\n");
-            // Code for Ethernet Header
-
-            ethernetHeader frame1 = new ethernetHeader(fileData.substring(0, 112), fileData.substring(112));
-            System.out.println(frame1.toString());
-        }
-
         userInput.close();
         readInput.close();
     }
 }
 
-class HeaderExtractor {
-    String inputFrameData;
 
-    public HeaderExtractor(String inputFrameData) {
-        this.inputFrameData = inputFrameData;
-    }
 
-}
 
-class ethernetHeader implements strBinToStrHex {
-    String headerFrame;
-    String data;
-    String destinationMAC;
-    String sourceMAC;
-    String type;
 
-    public ethernetHeader(String headerFrame, String data) {
-        this.headerFrame = headerFrame;
-        this.data = data;
-        this.destinationMAC = convertStringToHex(headerFrame.substring(0, 48));
-        this.sourceMAC = convertStringToHex(headerFrame.substring(48, 96));
-        this.type = convertStringToHex(headerFrame.substring(96, 112));
-    }
-
-    @Override
-    public String toString() {
-        System.out.println();
-        return "Ethernet Header\n" + "\n" + "\nDestination MAC Address: " + printMAC(destinationMAC)
-                + "\nSource MAC Address: " + printMAC(sourceMAC) + "\nType: " + type;
-    }
-}
-
-interface strBinToStrHex {
-    default String convertStringToHex(String binaryString) {
-        BigInteger decimalVal = new BigInteger(binaryString, 2);
-        // this is just to debug the code.
-        // System.out.println("Print decimal value of "+binaryString +" is
-        // "+decimalVal);
-        return decimalVal.toString(16);
-    }
-
-    default String printMAC(String hexValue) {
-        StringBuilder MACAddress = new StringBuilder(hexValue);
-        for (int i = 2; i <= hexValue.length() + 2; i += 3) {
-            // insert character value at offset i
-            MACAddress.insert(i, ':');
-        }
-        return String.valueOf(MACAddress);
-    }
-}
