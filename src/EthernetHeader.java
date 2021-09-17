@@ -1,5 +1,8 @@
 import java.math.BigInteger;
 
+import static com.sun.tools.javac.util.StringUtils.toUpperCase;
+import static java.lang.System.exit;
+
 public class EthernetHeader implements strBinToStrHex {
     String headerFrame;
     String data;
@@ -14,25 +17,25 @@ public class EthernetHeader implements strBinToStrHex {
         this.sourceMAC = convertStringToHex(headerFrame.substring(48, 96));
         this.type = convertStringToHex(headerFrame.substring(96, 112));
         System.out.println(this);
-        System.out.println(type.compareTo("806"));
         //Code for Network Header
-        if(type.compareTo("806") == 0){
+        if (type.compareTo("806") == 0) {
             //ARP header
-            System.out.println(data+ "\n");
             ARPHeader frame2 = new ARPHeader(this.data);
-        }else if(type.equals("800")){
+        } else if (type.equals("800")) {
             //IPv4 header
             IPv4Header frame2 = new IPv4Header(this.data);
-        }else{
-            System.out.println("Something went wrong, Unknown type: "+ type);
+        } else {
+            System.out.println("Something went wrong, Unknown type: " + type);
+            System.out.println("The program will terminate now...");
+            exit(1);
         }
     }
 
     @Override
     public String toString() {
         System.out.println();
-        return "Ethernet Header\n"+"----------------------------" + "\nDestination MAC Address: " + printMAC(destinationMAC)
-                + "\nSource MAC Address: " + printMAC(sourceMAC) + "\nType: " + type;
+        return "Ethernet Header\n" + "----------------------------" + "\nDestination MAC Address: " + printMAC(destinationMAC)
+                + "\nSource MAC Address: " + printMAC(sourceMAC) + "\nType: " + "x" + type;
     }
 }
 
@@ -42,7 +45,7 @@ interface strBinToStrHex {
         // this is just to debug the code.
         // System.out.println("Print decimal value of "+binaryString +" is
         // "+decimalVal);
-        return decimalVal.toString(16);
+        return toUpperCase(decimalVal.toString(16));
     }
 
     default String printMAC(String hexValue) {
@@ -57,13 +60,18 @@ interface strBinToStrHex {
         }
         return String.valueOf(MACAddress);
     }
-    default String printIP(String hexValue){
-        StringBuilder IPAddress = new StringBuilder();
-        for (int i = 0; i < hexValue.length(); i=i+2) {
-            int dottedDecimal = Integer.parseInt(hexValue.substring(i, i + 2), 16);;
-            IPAddress.append(dottedDecimal);
-            IPAddress.append('.');
+
+    default String printIP(String hex) {
+        String ip = "";
+
+        for (int j = 0; j < hex.length(); j += 2) {
+            String sub = hex.substring(j, j + 2);
+            int num = Integer.parseInt(sub, 16);
+            ip += num + ".";
         }
-        return String.valueOf(IPAddress);
+
+        ip = ip.substring(0, ip.length() - 1);
+        return ip;
     }
+
 }

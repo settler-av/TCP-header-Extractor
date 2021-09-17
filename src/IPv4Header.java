@@ -47,33 +47,31 @@ public class IPv4Header implements strBinToStrHex {
 
         //this we will be using in transport layer.
         dataOfTransportLayer = headerFrame.substring((32 * Integer.parseInt(headerLength)));
-        if(protocol.equals(Integer.toString(6))){
+        if (protocol.equals(Integer.toString(6))) {
             TCPTransportHeader frame3 = new TCPTransportHeader(dataOfTransportLayer);
-        }
-        else if(protocol.equals(Integer.toString(11))){
+        } else if (protocol.equals(Integer.toString(11))) {
             UDPTransportHeader frame3 = new UDPTransportHeader(dataOfTransportLayer);
-        }
-        else{
-            System.out.println("Unknown protocol detected, Protocol: "+ protocol);
+        } else {
+            System.out.println("Unknown protocol detected, Protocol: " + protocol);
         }
     }
 
     @Override
     public String toString() {
-        return "\nNetwork Header" + "\n" +
+        return "\n\nNetwork Header" + "\n" +
                 "----------------------------" + "\n" +
                 "IPv4 Header" + "\n" +
-                "Version:" + version + "\n" +
-                "IHL:" + headerLength + "\n" +
-                "DSCP:" + DSCP + "\n" +
-                "ECN:" + ECN + "\n" +
-                "Total Length:" + totalLength + "\n" +
-                "Identification:" + identification + "\n" +
-                "Flags:" + flags + "\n" +
-                "Fragment Offset:" + fragmentOffset + "\n" +
-                "Time to Live:" + timeToLive + "\n" +
-                "Protocol:" + protocol + "\n" +
-                "Header Checksum:" + headerChecksum + "\n" +
+                "Version:" + " x" + version + "\n" +
+                "IHL:" + " x" + headerLength + "\n" +
+                "DSCP:" + " x" + DSCP + "\n" +
+                "ECN:" + " x" + ECN + "\n" +
+                "Total Length:" + " x" + totalLength + "\n" +
+                "Identification:" + " x" + identification + "\n" +
+                "Flags:" + " x" + flags + "\n" +
+                "Fragment Offset:" + " x" + fragmentOffset + "\n" +
+                "Time to Live:" + " x" + timeToLive + "\n" +
+                "Protocol:" + " x" + protocol + "\n" +
+                "Header Checksum:" + " x" + headerChecksum + "\n" +
                 "Source IP Address:" + printIP(sourceIP) + "\n" +
                 "Destination IP Address:" + printIP(destinationIP);
     }

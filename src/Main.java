@@ -19,31 +19,32 @@ public class Main {
         Scanner userInput = new Scanner(System.in);
 
 
-//        String filePath = userInput.nextLine();
-
-
-
-        String filePath = new String("D:\\college document\\0 SEM 3\\CE 257 DCN\\assignment - 1\\Sample.txt");
+        String filePath = userInput.nextLine();
+//        String filePath = new String("D:\\college document\\0 SEM 3\\CE 257 DCN\\assignment - 1\\Sample.txt");
         File inputFile = new File(filePath);
-        Scanner readInput = new Scanner(inputFile, StandardCharsets.UTF_8);
-        /**
-         * @// TODO: 9/17/2021 Add try and catch for wrong file path.
-         */
-        System.out.print("How many lines? -> ");
-        int numberOfLinesToRead = userInput.nextInt();
-        for (int i = 0; i < numberOfLinesToRead; i++) {
-            String fileData = readInput.nextLine();
-//            To check if file is being read or not
-//            System.out.println(fileData);
-            System.out.println("------------------------------------------\n" + "Output for the row - " + (i + 1) + "\n"
-                    + "------------------------------------------");
+        try (Scanner readInput = new Scanner(inputFile, StandardCharsets.UTF_8)) {
+            System.out.print("How many input rows wants to print: ");
+            int numberOfLinesToRead = userInput.nextInt();
+            for (int i = 0; i < numberOfLinesToRead; i++) {
+                String fileData = readInput.nextLine();
+    //            To check if file is being read or not
+    //            System.out.println(fileData);
+                System.out.println("\n\n------------------------------------------\n" +
+                        "------------------------------------------\n" +
+                        "Output for the row - " + (i + 1) + "\n"
+                        + "------------------------------------------");
 
-//            I have used constructor to call print methods, and it will implicitly call another layer
-            EthernetHeader frame1 = new EthernetHeader(fileData.substring(0, 112), fileData.substring(112));
+    //            I have used constructor to call print methods, and it will implicitly call another layer
+                EthernetHeader frame1 = new EthernetHeader(fileData.substring(0, 112), fileData.substring(112));
 
+            }
+            userInput.close();
+            readInput.close();
         }
-        userInput.close();
-        readInput.close();
+        catch (IOException e){
+            System.out.println("File not detected : Program will terminate now...");
+            System.out.println(e.getMessage());
+        }
     }
 }
 

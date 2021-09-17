@@ -26,19 +26,24 @@ public class ARPHeader implements strBinToStrHex {
         System.out.println(this);
     }
 
+    String requestOrReply() {
+        if (OperationCode.equals("1")) return "Request";
+        else return "Reply";
+    }
+
     @Override
     public String toString() {
-        return ("Network Header\n"+
+        return ("\nNetwork Header\n" +
                 "----------------------------"
-                +"\nARP header \n"+HeaderData+"\n"+
+                + "\nARP " + requestOrReply() + " header \n\n" +
                 "Hardware type: " + HardwareType + "\n" +
                 "Protocol type: " + ProtocolType + "\n" +
                 "Header Length: " + HeaderLength + "\n" +
                 "Protocol Length: " + ProtocolLength + "\n" +
                 "Operation code: " + OperationCode + "\n" +
-                "Source MAC: " + printMAC(SourceMAC) + "\n" +
+                "Source MAC: " + /*printMAC*/(SourceMAC) + "\n" +
                 "Source IP: " + printIP(SourceIP) + "\n" +
-                "Target MAC: " + printMAC(TargetMAC) + "\n" +
-                "Target IP: " + printIP(TargetIP) + "\n+");
+                "Target MAC: " + /*printMAC*/(TargetMAC) + "\n" +
+                "Target IP: " + printIP(TargetIP) + "\n");
     }
 }
