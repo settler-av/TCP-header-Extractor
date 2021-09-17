@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -22,8 +21,7 @@ public class Main {
         File inputFile = new File(filePath);
         Scanner readInput = new Scanner(inputFile, StandardCharsets.UTF_8);
         /**
-         * @// TODO: 9/17/2021 Add try and catch for wrong file path. 
-         * @// TODO: 9/17/2021 Add how many rows you want to print option.
+         * @// TODO: 9/17/2021 Add try and catch for wrong file path.
          */
         System.out.print("How many lines? -> ");
         int numberOfLinesToRead = userInput.nextInt();
@@ -33,10 +31,10 @@ public class Main {
 //            System.out.println(fileData);
             System.out.println("------------------------------------------\n" + "Output for the row - " + (i + 1) + "\n"
                     + "------------------------------------------");
-            // Code for Ethernet Header
 
-            ethernetHeader frame1 = new ethernetHeader(fileData.substring(0, 112), fileData.substring(112));
-            System.out.println(frame1.toString());
+//            I have used constructor to call print methods, and it will implicitly call another layer
+            EthernetHeader frame1 = new EthernetHeader(fileData.substring(0, 112), fileData.substring(112));
+
         }
         userInput.close();
         readInput.close();
