@@ -17,7 +17,7 @@ public class IPv4Header implements strBinToStrHex {
     String dataOfTransportLayer;
 
     /**
-     * prameterized constructor.
+     * parameterized constructor.
      *
      * @param headerFrame stores the data of header frame.
      */
@@ -42,11 +42,17 @@ public class IPv4Header implements strBinToStrHex {
             option = convertStringToHex(headerFrame.substring(160, (32 * Integer.parseInt(headerLength))));
         }
 
-        System.out.println(toString());
+        System.out.println(this);
+
+
         //this we will be using in transport layer.
         dataOfTransportLayer = headerFrame.substring((32 * Integer.parseInt(headerLength)));
-
-
+        if(protocol.equals(Integer.toString(6))){
+            TCPTransportHeader frame3 = new TCPTransportHeader(dataOfTransportLayer);
+        }
+        else if(protocol.equals(Integer.toString(11))){
+            UDPTransportHeader frame3 = new UDPTransportHeader(dataOfTransportLayer);
+        }
     }
 
     @Override

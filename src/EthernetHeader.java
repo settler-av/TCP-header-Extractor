@@ -13,10 +13,16 @@ public class EthernetHeader implements strBinToStrHex {
         this.destinationMAC = convertStringToHex(headerFrame.substring(0, 48));
         this.sourceMAC = convertStringToHex(headerFrame.substring(48, 96));
         this.type = convertStringToHex(headerFrame.substring(96, 112));
-        System.out.println(toString());
+        System.out.println(this);
         
         //Code for Network Header
-        IPv4Header frame2 = new IPv4Header(this.data);
+        if(type.equals("806")){
+            //ARP header
+            ARPHeader frame2 = new ARPHeader(this.data);
+        }else if(type.equals("800")){
+            //IPv4 header
+            IPv4Header frame2 = new IPv4Header(this.data);
+        }
     }
 
     @Override

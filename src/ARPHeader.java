@@ -23,6 +23,7 @@ public class ARPHeader implements strBinToStrHex {
         SourceIP = convertStringToHex(HeaderData.substring(112, 144));
         TargetMAC = convertStringToHex(HeaderData.substring(144, 192));
         TargetIP = convertStringToHex(HeaderData.substring(192, 224));
+        System.out.println(this);
     }
 
     @Override
