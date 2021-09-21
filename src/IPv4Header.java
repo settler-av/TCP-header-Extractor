@@ -1,4 +1,7 @@
-public class IPv4Header implements strBinToStrHex {
+/**
+ * @implNote class for IPv4 header
+ */
+class IPv4Header implements strBinToStrHex {
     String headerFrame;
     String version;
     String headerLength;
@@ -13,13 +16,13 @@ public class IPv4Header implements strBinToStrHex {
     String headerChecksum;
     String sourceIP;
     String destinationIP;
-    String option = null;
+    String option;
     String dataOfTransportLayer;
 
     /**
-     * parameterized constructor.
+     * parameterized constructor. We will be using this constructor to allocate data to different fields of IPv4 Header. Rest of the data will be going to send to Transport header.
      *
-     * @param headerFrame stores the data of header frame.
+     * @param headerFrame stores the data of header frame. length of header frame is usually 160 bits
      */
     public IPv4Header(String headerFrame) {
         this.headerFrame = headerFrame;
@@ -41,10 +44,7 @@ public class IPv4Header implements strBinToStrHex {
         } else {
             option = convertStringToHex(headerFrame.substring(160, (32 * Integer.parseInt(headerLength))));
         }
-
         System.out.println(this);
-
-
         //this we will be using in transport layer.
         dataOfTransportLayer = headerFrame.substring((32 * Integer.parseInt(headerLength)));
         if (protocol.equals(Integer.toString(6))) {
@@ -58,7 +58,8 @@ public class IPv4Header implements strBinToStrHex {
 
     @Override
     public String toString() {
-        return "\n\nNetwork Header" + "\n" +
+        return "\n----------------------------" +
+                "\nNetwork Header" + "\n" +
                 "----------------------------" + "\n" +
                 "IPv4 Header" + "\n" +
                 "Version:" + " x" + version + "\n" +
@@ -76,4 +77,3 @@ public class IPv4Header implements strBinToStrHex {
                 "Destination IP Address:" + printIP(destinationIP);
     }
 }
-

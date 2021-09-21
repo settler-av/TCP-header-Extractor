@@ -1,6 +1,7 @@
-import javax.print.attribute.standard.Destination;
-
-public class ARPHeader implements strBinToStrHex {
+/**
+ * class to Deal with ARP header.
+ */
+class ARPHeader implements strBinToStrHex {
     String HeaderData;
     String HardwareType;
     String ProtocolType;
@@ -12,6 +13,11 @@ public class ARPHeader implements strBinToStrHex {
     String TargetMAC;
     String TargetIP;
 
+    /**
+     * Parameterized constructor to Allocated ARP header field values
+     *
+     * @param HeaderData contains data received from Ethernet header.
+     */
     ARPHeader(String HeaderData) {
         this.HeaderData = HeaderData;
         HardwareType = convertStringToHex(this.HeaderData.substring(0, 16));
@@ -33,9 +39,11 @@ public class ARPHeader implements strBinToStrHex {
 
     @Override
     public String toString() {
-        return ("\nNetwork Header\n" +
+        return ("\n----------------------------" +
+                "\nNetwork Header\n" +
                 "----------------------------"
-                + "\nARP " + requestOrReply() + " header \n\n" +
+                + "\nARP " + requestOrReply() + " header" +
+                "\n----------------------------\n" +
                 "Hardware type: " + HardwareType + "\n" +
                 "Protocol type: " + ProtocolType + "\n" +
                 "Header Length: " + HeaderLength + "\n" +

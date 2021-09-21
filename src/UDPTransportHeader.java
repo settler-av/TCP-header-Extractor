@@ -1,10 +1,18 @@
-public class UDPTransportHeader implements strBinToStrHex {
+/**
+ * class for UDP header data.
+ */
+class UDPTransportHeader implements strBinToStrHex {
     String sourcePort;
     String destinationPort;
     String length;
     String headerDataChecksum;
     String applicationLayerData;
 
+    /**
+     * Parameterized constructor for UDP header,
+     *
+     * @param headerFrame contains data for UDP header.
+     */
     UDPTransportHeader(String headerFrame) {
         sourcePort = convertStringToHex(headerFrame.substring(0, 16));
         destinationPort = convertStringToHex(headerFrame.substring(16, 32));
@@ -16,7 +24,9 @@ public class UDPTransportHeader implements strBinToStrHex {
 
     @Override
     public String toString() {
-        return "\nTransport Layer\n" +
+        return "\n----------------------------" +
+                "\nTransport Layer" +
+                "\n----------------------------" +
                 "\nUDP header\n" +
                 "----------------------------\n" +
                 "Source port: " + sourcePort + "\n" +

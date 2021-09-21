@@ -3,13 +3,22 @@ import java.math.BigInteger;
 import static com.sun.tools.javac.util.StringUtils.toUpperCase;
 import static java.lang.System.exit;
 
-public class EthernetHeader implements strBinToStrHex {
+/**
+ * @implNote this is Ethernet header class it will take first 122 bits as data and rest bits will be sent to IPv4 or ARP header as data.
+ */
+class EthernetHeader implements strBinToStrHex {
     String headerFrame;
     String data;
     String destinationMAC;
     String sourceMAC;
     String type;
 
+    /**
+     * Parameterized constructor for Ethernet header.
+     *
+     * @param headerFrame data for header frame will be converted into different header fields of Ethernet header.
+     * @param data        it will be transferred to Network header called implicitly in this constructor.
+     */
     public EthernetHeader(String headerFrame, String data) {
         this.headerFrame = headerFrame;
         this.data = data;
@@ -34,44 +43,11 @@ public class EthernetHeader implements strBinToStrHex {
     @Override
     public String toString() {
         System.out.println();
-        return "Ethernet Header\n" + "----------------------------" + "\nDestination MAC Address: " + printMAC(destinationMAC)
-                + "\nSource MAC Address: " + printMAC(sourceMAC) + "\nType: " + "x" + type;
+        return "----------------------------" +
+                "\nEthernet Header\n"
+                + "----------------------------" +
+                "\nDestination MAC Address: " + printMAC(destinationMAC)
+                + "\nSource MAC Address: " + printMAC(sourceMAC)
+                + "\nType: " + "x" + type;
     }
-}
-
-interface strBinToStrHex {
-    default String convertStringToHex(String binaryString) {
-        BigInteger decimalVal = new BigInteger(binaryString, 2);
-        // this is just to debug the code.
-        // System.out.println("Print decimal value of "+binaryString +" is
-        // "+decimalVal);
-        return toUpperCase(decimalVal.toString(16));
-    }
-
-    default String printMAC(String hexValue) {
-        StringBuilder MACAddress = new StringBuilder(hexValue);
-        /**
-         * @// TODO: 9/17/2021 add 'x' symbol before the MAC address
-         */
-//      MACAddress.insert(0,'x');
-        for (int i = 2; i <= hexValue.length() + 2; i += 3) {
-            // insert character value at offset i
-            MACAddress.insert(i, ':');
-        }
-        return String.valueOf(MACAddress);
-    }
-
-    default String printIP(String hex) {
-        String ip = "";
-
-        for (int j = 0; j < hex.length(); j += 2) {
-            String sub = hex.substring(j, j + 2);
-            int num = Integer.parseInt(sub, 16);
-            ip += num + ".";
-        }
-
-        ip = ip.substring(0, ip.length() - 1);
-        return ip;
-    }
-
 }

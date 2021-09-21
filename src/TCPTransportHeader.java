@@ -1,4 +1,7 @@
-public class TCPTransportHeader implements strBinToStrHex {
+/**
+ * class for TCP header data.
+ */
+class TCPTransportHeader implements strBinToStrHex {
     String headerFrame;
 
     String sourcePort;
@@ -17,6 +20,11 @@ public class TCPTransportHeader implements strBinToStrHex {
     String CheckSum;
     String UrgentPointer;
 
+    /**
+     * this is parameterized constructor for TCP transport header, it will assign the transport header frame data.
+     *
+     * @param transportData contains TCP header details.
+     */
     TCPTransportHeader(String transportData) {
         this.headerFrame = transportData;
         sourcePort = convertStringToHex(headerFrame.substring(0, 16));
@@ -25,8 +33,8 @@ public class TCPTransportHeader implements strBinToStrHex {
         acknowledgementNumber = "x" + convertStringToHex(headerFrame.substring(64, 96));
         headerLength = "x" + convertStringToHex(headerFrame.substring(96, 100));
         reservedBits = (headerFrame.substring(100, 106));
-        ACK = convertStringToHex(headerFrame.substring(107, 108));
         URG = convertStringToHex(headerFrame.substring(106, 107));
+        ACK = convertStringToHex(headerFrame.substring(107, 108));
         PSH = convertStringToHex(headerFrame.substring(108, 109));
         RST = convertStringToHex(headerFrame.substring(109, 110));
         SYN = convertStringToHex(headerFrame.substring(110, 111));
@@ -40,7 +48,11 @@ public class TCPTransportHeader implements strBinToStrHex {
 
     @Override
     public String toString() {
-        return ("\nTransport Layer " + "\n----------------------------" + "\nTCP header\n" +
+        return ("\n----------------------------" +
+                "\nTransport Layer "
+                + "\n----------------------------"
+                + "\nTCP header\n" +
+                "\n----------------------------\n" +
                 "sourcePort= " + sourcePort + "\n" +
                 "destinationPort= " + destinationPort + "\n" +
                 "sequenceNumber= " + sequenceNumber + "\n" +
